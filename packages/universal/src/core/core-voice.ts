@@ -40,7 +40,12 @@ export const createVoiceFromSlack = async (web: WebClient, payload: IMyViewSubmi
 
 export const openViewToPostVoice = async (web: WebClient, triggerId: string, channelId: string, channelName: string='private') => {
   const viewOpenArg = getNewVoiceViewsArg(triggerId, { channelId, channelName })
-  await web.views.open(viewOpenArg)
+  try {
+    const aaa = await web.views.open(viewOpenArg)
+    console.log(aaa)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 export const voteSlackVoice = async (payload: IMyBlockActionPayload, type: 'LIKE' | 'DISLIKE') => {
